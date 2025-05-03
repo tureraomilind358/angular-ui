@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h3 class="card-title">Add Product</h3>
+                </div>
+                <div class="card-body">
+                    <form #productData="ngForm" (ngSubmit)="onSubmit(productData)">
+                        <div class="mb-3">
+                          <label for="brand" class="form-label">Brand</label>
+                          <input type="text" class="form-control"  name="brand" ngModel id="brand" placeholder="Enter brand name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="cpu" class="form-label">CPU</label>
+                          <input type="text" class="form-control"  name="cpu" ngModel id="cpu">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ram" class="form-label">Ram</label>
+                            <input type="text" class="form-control"  name="ram" ngModel id="ram" placeholder="Enter Ram GB">
+                          </div>
+                          <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" class="form-control" name="price" ngModel id="price" placeholder="Enter Price">
+                          </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+                   
+            </div>
+        </div>
+    </div>
+</div>
