@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="card">
+      <div class="row">
+        <div class="col-xl-6">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+            alt="Sample photo" class="img-fluid" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" />
+        </div>
+        <div class="col-xl-6">
+          <form [formGroup]="registration" (ngSubmit)="onSubmit()" class="p-5">
+            <h3 class="mb-4">Registration</h3>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" formControlName="fname" placeholder="First Name" />
+                <div class="text-danger small"
+                  *ngIf="registration.get('fname')?.touched && registration.get('fname')?.invalid">
+                  First name is required.
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" formControlName="lname" placeholder="Last Name" />
+                <div class="text-danger small"
+                  *ngIf="registration.get('lname')?.touched && registration.get('lname')?.invalid">
+                  Last name is required.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <input type="email" class="form-control" (blur)="emailcheck($any($event.target).value)" formControlName="email" placeholder="Email" />
+                  <div class="small"
+                    *ngIf="registration.get('email')?.touched && registration.get('email')?.valid">
+                    <span class="text-success" *ngIf="emailExist">Your Mail {{emailUnique}}</span>
+                    <span class="text-danger" *ngIf="!emailExist">Your Mail not {{emailUnique}}</span>
+                  </div>
+                  <div class="text-danger small"
+                    *ngIf="registration.get('email')?.touched && registration.get('email')?.errors?.['required']">
+                    Email is required.
+                  </div>
+                  <div class="text-danger small"
+                    *ngIf="registration.get('email')?.touched && registration.get('email')?.errors?.['email']">
+                    Enter a valid email format.
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <input type="password" class="form-control" formControlName="user_pwd" placeholder="Password" />
+                  <div class="text-danger small"
+                    *ngIf="registration.get('user_pwd')?.touched && registration.get('user_pwd')?.invalid">
+                    Password must be at least 6 characters.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="mb-3">
+                  <input type="date" class="form-control" formControlName="dob" />
+                  <div class="text-danger small"
+                    *ngIf="registration.get('dob')?.touched && registration.get('dob')?.invalid">
+                    Date of birth is required.
+                  </div>
+                  <div class="text-danger small"
+                    *ngIf="registration.get('dob')?.untouched && registration.get('dob')?.hasError('required')">
+                    Date of birth is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <select class="form-select" formControlName="gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                  <div class="text-danger small"
+                    *ngIf="registration.get('gender')?.touched && registration.get('gender')?.invalid">
+                    Gender is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="mb-3">
+                  <input type="text" class="form-control" formControlName="phno" placeholder="Phone Number" />
+                  <div class="text-danger small"
+                    *ngIf="registration.get('phno')?.touched && registration.get('phno')?.invalid">
+                    Valid 10-digit phone number is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <select class="form-select" formControlName="countryId"
+                    (change)="onCountryChange($any($event.target).value)">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let country of countries | keyvalue" [value]="country.key"> {{ country.value }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <select class="form-select" formControlName="stateId"
+                    (change)="onStateChange($any($event.target).value)">
+                    <option value="">Select State</option>
+                    <option *ngFor="let state of states | keyvalue" [value]="state.key"> {{ state.value }} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-4">
+                  <select class="form-select" formControlName="cityId">
+                    <option value="">Select City</option>
+                    <option *ngFor="let city of cities | keyvalue" [value]="city.key"> {{ city.value }} </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+           
+
+            <div class="d-flex justify-content-end pt-3">
+              <button type="reset"  class="btn btn-light btn-lg">Reset
+                all</button>
+              <button type="submit" [disabled]="registration.invalid" class="btn btn-warning btn-lg ms-2">Submit
+                form</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
